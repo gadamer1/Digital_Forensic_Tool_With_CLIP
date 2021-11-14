@@ -1,33 +1,56 @@
 import React from "react";
-import Head from "next/head";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogActions from "@material-ui/core/DialogActions";
 import Typography from "@material-ui/core/Typography";
+import fs from "fs";
+import path from "path";
+import MyTreeView from "../components/TreeView";
 
-const useStyles = makeStyles((theme) =>
-  createStyles({
-    root: {
-      textAlign: "center",
-      paddingTop: theme.spacing(4),
-    },
-  })
-);
+let id = 0;
 
 function Treeview() {
-  const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-  const handleClick = () => setOpen(true);
+  const [treeList, setTreeList] = React.useState([]);
+
+  const createFileItem = (name, child = []) => {
+    id += 1;
+    return {
+      name: name,
+      child: child,
+      id: id,
+    };
+  };
+  const getChildDirectories = (folderPath) => {
+    let names = fs.readdirSync(folderPath);
+    let children = [];
+    names.map((name) => {
+      let fullpath = path.join(folderPath, name);
+      let stat = fs.statSync(fullpath);
+      if (stat.isFile()) {
+        children.push(createFileItem(name));
+      } else {
+        let child = getChildDirectories(fullpath);
+        id += 1;
+        children.push({
+          name: name,
+          child: child,
+          id: id,
+        });
+      }
+    });
+    return children;
+  };
+
+  const handleFileInput = (e) => {
+    let folderPath = e.target.files[0].path.split("/").slice(0, -1).join("/");
+    setTreeList(getChildDirectories(folderPath));
+
+    setOpen(true);
+  };
 
   return (
     <>
-      <input type="file" webkitdirectory="true" />
+      <input type="file" webkitdirectory="true" onChange={handleFileInput} />
       <Typography>TreeView</Typography>
+      {open && <MyTreeView treeList={treeList} />}
     </>
   );
 }
