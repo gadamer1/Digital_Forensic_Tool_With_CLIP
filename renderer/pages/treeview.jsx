@@ -8,7 +8,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogActions from "@material-ui/core/DialogActions";
 import Typography from "@material-ui/core/Typography";
-import Link from "../components/Link";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,7 +18,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-function DashBoard() {
+function Treeview() {
   const classes = useStyles({});
   const [open, setOpen] = React.useState(false);
   const handleClose = () => setOpen(false);
@@ -27,9 +26,10 @@ function DashBoard() {
 
   return (
     <>
-      <Typography>sdf</Typography>
+      <input type="file" webkitdirectory="true" />
+      <Typography>TreeView</Typography>
     </>
   );
 }
 
-export default DashBoard;
+export default Treeview;
