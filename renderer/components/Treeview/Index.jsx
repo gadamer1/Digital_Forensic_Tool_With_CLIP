@@ -7,7 +7,7 @@ import TreeItem from "@mui/lab/TreeItem";
 const Index = ({ treeList }) => {
   let RecursItem = (data) => {
     console.log(treeList);
-    debugger;
+
     if (!data.child) {
       return (
         <TreeItem key={data.id} nodeId={String(data.id)} label={data.name} />

@@ -7,7 +7,6 @@ import MyTreeView from "../components/TreeView";
 let id = 0;
 
 function Treeview() {
-  const [open, setOpen] = React.useState(false);
   const [treeList, setTreeList] = React.useState([]);
 
   const createFileItem = (name, child = []) => {
@@ -42,15 +41,14 @@ function Treeview() {
   const handleFileInput = (e) => {
     let folderPath = e.target.files[0].path.split("/").slice(0, -1).join("/");
     setTreeList(getChildDirectories(folderPath));
-
-    setOpen(true);
+    console.log(treeList);
   };
 
   return (
     <>
       <input type="file" webkitdirectory="true" onChange={handleFileInput} />
       <Typography>TreeView</Typography>
-      {open && <MyTreeView treeList={treeList} />}
+      {treeList && <MyTreeView treeList={treeList} />}
     </>
   );
 }
