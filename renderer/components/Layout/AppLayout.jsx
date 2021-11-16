@@ -3,10 +3,8 @@ import Header from "./Header";
 const AppLayout = ({ children }) => {
   return (
     <>
-      <div>
-        <Header />
-        {children}
-      </div>
+      <Header />
+      {children}
     </>
   );
 };
