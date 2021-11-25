@@ -4,7 +4,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import Image from "next/image";
 const Index = ({ photoList }) => {
   return (
-    <ImageList cols={3} rowHeight={164} cols={3}>
+    <ImageList cols={3} rowHeight={300} cols={3}>
       {photoList &&
         photoList.map((item) => (
           <ImageListItem key={item.id}>
