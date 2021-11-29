@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "./Header";
+import Paper from "@mui/material/Paper";
 const AppLayout = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <Paper style={{ width: "88%", margin: "0 auto" }}>{children}</Paper>
     </>
   );
 };

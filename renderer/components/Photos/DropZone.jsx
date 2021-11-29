@@ -15,6 +15,8 @@ export default function MyDropzone({ model }) {
             src: reader.result,
             title: reader.result,
             id: idx,
+            tag: "",
+            prob: "",
           },
         ]);
       };
@@ -41,7 +43,13 @@ export default function MyDropzone({ model }) {
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
-      {photoList && <Photos photoList={photoList} model={model} />}
+      {photoList.length > 0 && (
+        <Photos
+          photoList={photoList}
+          model={model}
+          setPhotoList={setPhotoList}
+        />
+      )}
     </>
   );
 }
