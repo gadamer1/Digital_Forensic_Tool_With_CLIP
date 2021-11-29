@@ -2,12 +2,13 @@ import React, { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Photos from "./Index";
 
-export default function MyDropzone() {
+export default function MyDropzone({ model }) {
   const [photoList, setPhotoList] = useState([]);
+
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file, idx) => {
       let reader = new FileReader();
-      reader.onloadend = () => {
+      reader.onloadend = (e) => {
         setPhotoList((prevState) => [
           ...prevState,
           {
@@ -20,6 +21,7 @@ export default function MyDropzone() {
       reader.readAsDataURL(file);
     });
   }, []);
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   return (
@@ -39,7 +41,7 @@ export default function MyDropzone() {
         <input {...getInputProps()} />
         <p>Drag 'n' drop some files here, or click to select files</p>
       </div>
-      {photoList && <Photos photoList={photoList} />}
+      {photoList && <Photos photoList={photoList} model={model} />}
     </>
   );
 }

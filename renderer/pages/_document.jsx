@@ -14,6 +14,9 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
           />
+          <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
         </Head>
         <body>
           <Main />
