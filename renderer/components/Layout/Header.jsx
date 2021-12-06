@@ -1,26 +1,20 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
 import React from "react";
+import Image from "next/image";
 import Link from "@mui/material/Link";
 const Header = () => {
   return (
     <>
-      <AppBar position="relative">
+      <AppBar position="relative" color="secondary">
         <Toolbar>
-          <Typography variant="h6" style={{ marginRight: "10px" }}>
-            <Link color="inherit" underline="none" href="/home">
-              DashBoard
-            </Link>
-          </Typography>
-          <Typography variant="h6" style={{ marginRight: "10px" }}>
-            <Link color="inherit" underline="none" href="/treeview">
-              Tree View
-            </Link>
-          </Typography>
-          <Typography variant="h6" style={{ marginRight: "10px" }}>
-            <Link color="inherit" underline="none" href="/image">
-              Image
-            </Link>
-          </Typography>
+          <Link
+            color="inherit"
+            underline="none"
+            href="/home"
+            style={{ justifyContent: "center" }}
+          >
+            <Image src={require("../../public/images/logo_white.png")} />
+          </Link>
         </Toolbar>
       </AppBar>
     </>
